@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: psicologo
+          uri: lb://PSICOLOGO-SERVICE
+          predicates:
+            - Path=/psicologo/**
+          filters:
+            - StripPrefix=1
+        - id: atendimento
+          uri: lb://ATENDIMENTO-SERVICE
+          predicates:
+            - Path=/atendimento/**
+          filters:
+            - StripPrefix=1
+        - id: paciente
+          uri: lb://PACIENTE-SERVICE
+          predicates:
+            - Path=/paciente/**
+          filters:
+            - StripPrefix=1
+        - id: pagamento
+          uri: lb://PAGAMENTO-SERVICE
+          predicates:
+            - Path=/pagamento/**
+          filters:
+            - StripPrefix=1
+        - id: avaliacao
+          uri: lb://AVALIACAO-SERVICE
+          predicates:
+            - Path=/avaliacao/**
+          filters:
+            - StripPrefix=1
+server:
+  port: 9999
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

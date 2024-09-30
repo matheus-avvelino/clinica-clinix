@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: nota-fiscal-worker
+
+app:
+  myport: ${PORT:0}
+server:
+  port: ${app.myport}

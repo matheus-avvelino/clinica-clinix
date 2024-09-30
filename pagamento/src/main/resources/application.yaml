@@ -1,0 +1,20 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: pagamento-service
+app:
+  myport: ${PORT:0}
+server:
+  port: ${app.myport}
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true #default
